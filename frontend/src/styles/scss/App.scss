@@ -1,0 +1,16 @@
+@import 'variables';
+@import 'base';
+@import 'themes';
+
+@import './components/spinner';
+@import './components/switch';
+@import './components/sidebar';
+@import './components/navbar';
+
+@import './pages/login';
+@import './pages/home';
+@import './pages/tracks';
+@import './pages/artists';
+@import './pages/genres';
+@import './pages/profile';
+@import './pages/notfound';

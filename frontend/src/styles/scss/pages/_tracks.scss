@@ -1,0 +1,162 @@
+.tracks {
+	@extend .container;
+	@include themed() {
+		color: t($text);
+	}
+	display: flex;
+	justify-content: center;
+
+	&__main {
+		display: flex;
+		align-self: flex-start;
+		align-items: center;
+	}
+
+	&__table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	&__table__body__tr {
+		height: 75px;
+	}
+
+	&__table__head_tr {
+		height: 40px;
+	}
+
+	&__table__body__td__first,
+	&__table__head_tr &__table__head_th_first {
+		border-top-left-radius: 8px;
+		border-bottom-left-radius: 8px;
+	}
+
+	&__table__body__td__fourth,
+	&__table__head_tr &__table__head_th_fourth {
+		border-top-right-radius: 8px;
+		border-bottom-right-radius: 8px;
+	}
+
+	&__table__body__td__first {
+		width: 5%;
+		text-align: center;
+	}
+
+	&__table__body__link {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__table__body__image {
+		border: 1px solid $spotify-dark;
+		border-radius: 5px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__table__body__td__third,
+	&__table__body__td__fourth {
+		padding: 0px 15px;
+	}
+
+	&__table__body__td__third,
+	&__table__body__td__fourth {
+		width: 44%;
+	}
+
+	&__table__body__tr:hover &__table__body__td,
+	&__table__head_tr:hover &__table__head_th {
+		transition: all 0.1s;
+		@include themed() {
+			background-color: darken(t($bg), 5);
+		}
+	}
+
+	&__error {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.tracks {
+		padding: 10px 10px;
+		padding-bottom: 55px;
+		flex-direction: column-reverse;
+		gap: 0;
+
+		&__main {
+			width: 100%;
+		}
+
+		&__table__body__td__first {
+			width: 5%;
+		}
+
+		&__table__body__td__second {
+			width: 15%;
+		}
+
+		&__table__body__td__third,
+		&__table__body__td__fourth {
+			width: 40%;
+		}
+
+		&__table__body__image {
+			margin-left: 5px;
+		}
+		&__error {
+			min-height: calc(100vh - 45px - (2 * 84px));
+		}
+	}
+}
+
+@media only screen and (min-width: 769px) {
+	.tracks {
+		padding-left: 10px;
+		padding-right: 10px;
+		flex-direction: column-reverse;
+		gap: 0;
+
+		&__main {
+			width: 100%;
+		}
+
+		&__table__body__td__first {
+			width: 5%;
+		}
+
+		&__table__body__td__second {
+			width: 10%;
+		}
+
+		&__table__body__td__third,
+		&__table__body__td__fourth {
+			width: calc(85% / 2);
+		}
+		&__error {
+			min-height: calc(100vh - 45px - 84px);
+		}
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.tracks {
+		flex-direction: row;
+		gap: 10px;
+
+		&__table__body__td__second {
+			width: 7%;
+		}
+
+		&__main {
+			width: 85%;
+		}
+		&__error {
+			min-height: calc(100vh - 45px);
+		}
+	}
+}

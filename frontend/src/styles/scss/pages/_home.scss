@@ -1,0 +1,78 @@
+.home {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+
+	&__empty {
+		font-size: 1.5rem;
+	}
+
+	&__currently__ad {
+		@include themed() {
+			color: t($text);
+		}
+		font-size: 1.5rem;
+	}
+
+	&__playing__ad {
+		@include themed() {
+			background: linear-gradient(215deg, t($accent) 0%, t($bg) 100%);
+		}
+	}
+
+	&__album {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 15px;
+
+		.paused &__image {
+			filter: grayscale(100%);
+		}
+
+		&__image {
+			border-radius: 10px;
+			border: 1px solid $spotify-dark;
+			object-fit: cover;
+			box-shadow: 3px 3px 5px 0px $spotify-dark;
+			transition: all 1s;
+			filter: grayscale(0%);
+		}
+	}
+
+	&__artists,
+	&__title {
+		@include themed() {
+			color: t($text);
+		}
+	}
+	&__title {
+		font-size: 1.2rem;
+		font-weight: 700;
+	}
+	&__artists__link {
+		font-weight: 300;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.home {
+		padding: 0 15px;
+		padding-bottom: calc(100vh / 6);
+	}
+}
+
+@media only screen and (min-width: 769px) {
+	.home {
+		padding: 0;
+
+		&__album {
+			&__image {
+				width: 640px;
+				height: 640px;
+			}
+		}
+	}
+}

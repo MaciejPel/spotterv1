@@ -1,0 +1,109 @@
+.profile {
+	@extend .container;
+
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
+
+	&__card {
+		@include themed() {
+			border: 1px solid t($text);
+			background-color: t($bg-secondary);
+		}
+		padding: 20px;
+		border-radius: 15px;
+		display: flex;
+	}
+
+	&__image {
+		border-radius: 50%;
+		padding: 10px 10px;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 15px;
+	}
+
+	&__name {
+		font-size: 1.5rem;
+	}
+
+	&__id,
+	&__email,
+	&__country,
+	&__followers {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__buttons {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	&__logout {
+		@include themed() {
+			background-color: t($danger);
+		}
+	}
+
+	&__spotify {
+		@include themed() {
+			background-color: t($accent);
+		}
+	}
+
+	&__button {
+		color: $pure-white;
+		border: 0;
+		border-radius: 8px;
+		padding: 10px 15px;
+		font-size: 1rem;
+		cursor: pointer;
+	}
+
+	&__spotify:hover {
+		@include themed() {
+			background-color: darken(t($accent), 5);
+		}
+	}
+
+	&__logout:hover {
+		@include themed() {
+			background-color: darken(t($danger), 5);
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.profile {
+		padding-top: 10px;
+		padding-bottom: 60px;
+		&__card {
+			flex-direction: column;
+			gap: 10px;
+		}
+		&__image__wrapper {
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
+
+@media only screen and (min-width: 769px) {
+}
+
+@media only screen and (min-width: 1200px) {
+	.profile {
+		padding-bottom: 150px;
+		&__card {
+			gap: 20px;
+		}
+	}
+}

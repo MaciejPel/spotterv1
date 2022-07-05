@@ -1,0 +1,129 @@
+.artists {
+	@extend .container;
+	@include themed() {
+		color: t($text);
+	}
+	display: flex;
+	justify-content: center;
+	min-height: calc(100vh);
+
+	&__main {
+		display: flex;
+		align-self: flex-start;
+		align-items: center;
+	}
+
+	&__missing {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		border: 1px solid $spotify-dark;
+		border-radius: 6px;
+	}
+	&__box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 3px;
+	}
+	&__image {
+		object-fit: cover;
+		border-radius: 6px;
+		border: 1px solid $spotify-dark;
+		height: 200px;
+		width: 200px;
+	}
+	&__name {
+		text-align: center;
+	}
+
+	&__error {
+		display: flex;
+		min-height: 80vh;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 0px) {
+	.artists {
+		padding: 10px 10px;
+		padding-bottom: 55px;
+		flex-direction: column-reverse;
+		gap: 0;
+
+		&__main {
+			width: 100%;
+			justify-content: center;
+		}
+
+		&__grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-row-gap: 15px;
+			grid-column-gap: 5px;
+		}
+		&__image {
+			object-fit: cover;
+			border-radius: 6px;
+			border: 1px solid $spotify-dark;
+			height: 150px;
+			width: 150px;
+		}
+		&__missing {
+			height: 150px;
+		}
+	}
+}
+@media only screen and (min-width: 576px) {
+	.artists {
+		&__image {
+			height: 220px;
+			width: 220px;
+		}
+		&__missing {
+			height: 220px;
+		}
+		&__error {
+			min-height: calc(100vh - 45px - (2 * 84px));
+		}
+	}
+}
+
+@media only screen and (min-width: 769px) {
+	.artists {
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 60px;
+		padding-bottom: 15px;
+		flex-direction: column-reverse;
+
+		&__grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		&__error {
+			min-height: calc(100vh - 45px - 84px);
+		}
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.artists {
+		flex-direction: row;
+		gap: 10px;
+
+		&__grid {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+		}
+
+		&__main {
+			width: 85%;
+		}
+		&__error {
+			min-height: calc(100vh - 45px);
+		}
+	}
+}

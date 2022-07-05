@@ -1,0 +1,97 @@
+.sidebar {
+	&__section {
+		padding: 10px;
+		border-radius: 6px;
+		@include themed() {
+			background-color: darken(t($bg-secondary), 10);
+		}
+	}
+
+	&__section__title {
+		text-align: center;
+		cursor: pointer;
+	}
+
+	&__button {
+		@include themed() {
+			background-color: lighten(t($bg-secondary), 5);
+			color: t($text);
+			&:hover {
+				background-color: darken(t($accent), 8);
+				color: $pure-white;
+			}
+		}
+
+		width: 100%;
+		border: 0px;
+		border-radius: 6px;
+		font-size: 1rem;
+		padding: 8px 0px;
+		margin-top: 10px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: 0.05s all;
+
+		&.active {
+			background-color: $spotify-green;
+			color: $pure-white;
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.sidebar {
+		width: 100%;
+
+		&__section {
+			margin-bottom: 10px;
+		}
+
+		&__section__options {
+			display: flex;
+			gap: 10px;
+		}
+	}
+}
+
+@media only screen and (min-width: 769px) {
+	.sidebar {
+		display: flex;
+		gap: 10px;
+		margin-bottom: 10px;
+		width: 100%;
+
+		&__section {
+			width: 50%;
+		}
+		&__section__options {
+			display: flex;
+			gap: 10px;
+		}
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.sidebar {
+		display: block;
+		position: -webkit-sticky;
+		position: sticky;
+		top: 60px;
+		align-self: flex-start;
+		margin-bottom: 15px;
+		width: auto;
+
+		&__section__options {
+			display: block;
+		}
+
+		&__section {
+			margin-bottom: 15px;
+		}
+
+		&__section,
+		&__button {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,99 @@
+.navbar {
+	@include themed() {
+		color: t($text);
+		background-color: rgba(t($bg), 0.5);
+		box-shadow: 0px 0px 5px 0px t($text);
+	}
+	width: 100%;
+	backdrop-filter: blur(8px);
+	min-height: 45px;
+	position: fixed;
+	display: flex;
+	z-index: 99;
+
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&__icon,
+	&__logo {
+		display: flex;
+		cursor: pointer;
+	}
+
+	&__title {
+		display: flex;
+		align-items: center;
+		font-weight: 800;
+		padding-left: 10px;
+	}
+
+	&__list__container {
+		display: flex;
+	}
+
+	&__list {
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon {
+		padding: 6px;
+		transition: all 0.2s;
+		border-radius: 50%;
+	}
+	&__icon:hover {
+		@include themed() {
+			background-color: rgba(t($text), 0.2);
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar {
+		bottom: 0;
+		min-height: 40px;
+		padding: 3px 0;
+
+		&__icon svg {
+			width: 28px;
+			height: 28px;
+		}
+
+		&__container,
+		&__list__container,
+		&__list {
+			width: 100%;
+		}
+
+		&__list {
+			justify-content: space-evenly;
+		}
+
+		&__logo {
+			display: none;
+		}
+	}
+}
+
+@media only screen and (min-width: 769px) {
+	.navbar {
+		top: 0;
+		&__list {
+			gap: 10px;
+		}
+	}
+	.navbar__container {
+		min-width: 700px;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.navbar__container {
+		min-width: 1200px;
+	}
+}

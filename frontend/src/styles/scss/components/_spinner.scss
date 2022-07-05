@@ -1,0 +1,27 @@
+.spinner {
+	width: 100%;
+	height: calc(100vh - 60px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__circle {
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		@include themed() {
+			border: 10px solid t($text);
+			border-top: 10px solid t($accent);
+		}
+
+		border-radius: 50%;
+		width: 80px;
+		height: 80px;
+		animation: spin 1s linear infinite;
+	}
+}

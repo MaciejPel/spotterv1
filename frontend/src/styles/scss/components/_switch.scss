@@ -1,0 +1,14 @@
+.toggle {
+	display: flex;
+	height: 100%;
+
+	&__button {
+		display: flex;
+		height: 100%;
+		background-color: transparent;
+		border: 0px;
+		border-radius: 50%;
+		cursor: pointer;
+		padding: 0;
+	}
+}
