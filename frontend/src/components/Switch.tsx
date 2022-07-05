@@ -1,5 +1,5 @@
-import { BsSun, BsMoon } from 'react-icons/bs';
 import useTheme from '../hooks/useTheme';
+import { BsSun, BsMoon } from 'react-icons/bs';
 
 const Switch: React.FC = () => {
 	const { isDark } = useTheme();

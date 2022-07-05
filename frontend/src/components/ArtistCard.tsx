@@ -1,5 +1,5 @@
-import { BsPersonBoundingBox } from 'react-icons/bs';
 import { ArtistCardProps } from '../types/types';
+import { BsPersonBoundingBox } from 'react-icons/bs';
 
 const ArtistCard: React.FC<ArtistCardProps> = ({ name, image, index, uri }) => {
 	return (

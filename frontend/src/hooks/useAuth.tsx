@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { fetchAuth, refetchAuth } from '../utils/authApi';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../app/store';
 import { resetAuth, setAuth } from '../features/auth/authSlice';
+import { fetchAuth, refetchAuth } from '../utils/authApi';
 import { dateToString, stringToDate } from '../utils/dateHandler';
 
 const useAuth = (code?: string): { accessToken: string } => {
@@ -28,7 +27,7 @@ const useAuth = (code?: string): { accessToken: string } => {
 
 	useEffect(() => {
 		if (!refreshToken || !expiresIn || !expiresAt) return;
-		const refresh = async () => {
+		const refreshAccess = async () => {
 			const response = await refetchAuth(refreshToken);
 			if (response) {
 				var now = new Date();
@@ -39,7 +38,7 @@ const useAuth = (code?: string): { accessToken: string } => {
 				dispatch(resetAuth());
 			}
 		};
-		if (new Date() > stringToDate(expiresAt) || accessToken === '401') refresh();
+		if (new Date() > stringToDate(expiresAt) || accessToken === '401') refreshAccess();
 	}, [expiresIn, expiresAt, refreshToken, dispatch, accessToken]);
 
 	return { accessToken };

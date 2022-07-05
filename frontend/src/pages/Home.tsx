@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { currentArtistsProps } from '../types/types';
 import { usePalette } from 'react-palette';
+import { currentArtistsProps } from '../types/types';
 import { fetchSpotifyAPI } from '../utils/spotifyApi';
 import useAuth from '../hooks/useAuth';
 import useTheme from '../hooks/useTheme';
 
 const Home: React.FC = () => {
 	document.title = 'Home | Spotter';
+	const [searchParams, setSearchParams] = useSearchParams();
 	const { accessToken } = useAuth();
 	const { isDark } = useTheme();
 
@@ -15,9 +18,17 @@ const Home: React.FC = () => {
 		refetchIntervalInBackground: true,
 		refetchOnWindowFocus: false,
 	});
+
 	const { data: imageData } = usePalette(
 		data ? (data.currently_playing_type !== 'ad' ? data.item.album.images[0].url : '') : ''
 	);
+
+	useEffect(() => {
+		if (searchParams.has('code') && accessToken) {
+			searchParams.delete('code');
+			setSearchParams(searchParams);
+		}
+	}, [searchParams, accessToken, setSearchParams]);
 
 	return (
 		<div

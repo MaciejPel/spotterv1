@@ -1,12 +1,12 @@
-import { useQuery } from 'react-query';
 import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSpotifyAPI } from '../utils/spotifyApi';
+import { AsideType, ArtistsProps } from '../types/types';
+import useAuth from '../hooks/useAuth';
 import ArtistCard from '../components/ArtistCard';
 import Spinner from '../components/Spinner';
 import AsideQueries from '../components/AsideQueries';
-import { AsideType, ArtistsProps } from '../types/types';
-import useAuth from '../hooks/useAuth';
 
 const TopArtists: React.FC = () => {
 	document.title = 'Top Artists | Spotter';
@@ -34,7 +34,7 @@ const TopArtists: React.FC = () => {
 		<div className="artists">
 			<main className="artists__main">
 				{isError && error instanceof Error && <div className="artists__error">{error.message}</div>}
-				{data && !isLoading && !isRefetching && (
+				{data && !isLoading && !isRefetching && !isError && (
 					<div className="artists__grid">
 						{data.items.map((artist: ArtistsProps, index: number) => (
 							<ArtistCard

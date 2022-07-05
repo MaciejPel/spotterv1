@@ -1,7 +1,10 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { resetAuth } from '../features/auth/authSlice';
 import { authURL } from '../utils/spotifyApi';
+import useAuth from '../hooks/useAuth';
+import useTheme from '../hooks/useTheme';
+import { useState } from 'react';
 import { RiFolderMusicFill } from 'react-icons/ri';
 import { BiLogIn, BiLogOut, BiUser, BiHomeAlt } from 'react-icons/bi';
 import { BsMusicNoteList } from 'react-icons/bs';
@@ -10,9 +13,6 @@ import Switch from './Switch';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/themes/light.css';
 import 'tippy.js/dist/tippy.css';
-import useAuth from '../hooks/useAuth';
-import useTheme from '../hooks/useTheme';
-import { useState } from 'react';
 
 const Navbar: React.FC = () => {
 	const [theme, setTheme] = useState<string>();

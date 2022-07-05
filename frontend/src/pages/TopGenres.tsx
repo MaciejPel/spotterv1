@@ -1,14 +1,14 @@
-import { useQuery } from 'react-query';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchSpotifyAPI } from '../utils/spotifyApi';
+import { useQuery } from 'react-query';
 import { AsideType } from '../types/types';
-import { Pie } from 'react-chartjs-2';
+import { fetchSpotifyAPI } from '../utils/spotifyApi';
 import AsideQueries from '../components/AsideQueries';
 import useWindowSize from '../hooks/useWindowSize';
-import 'chart.js/auto';
 import useAuth from '../hooks/useAuth';
 import useTheme from '../hooks/useTheme';
+import { Pie } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 const TopGenres: React.FC = () => {
 	document.title = 'Top Genres | Spotter';

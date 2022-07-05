@@ -1,11 +1,11 @@
-import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import { fetchSpotifyAPI } from '../utils/spotifyApi';
-import Spinner from '../components/Spinner';
-import AsideQueries from '../components/AsideQueries';
 import { AsideType, TrackProps } from '../types/types';
 import useAuth from '../hooks/useAuth';
+import Spinner from '../components/Spinner';
+import AsideQueries from '../components/AsideQueries';
 
 const TopTracks: React.FC = () => {
 	document.title = 'Top Tracks | Spotter';
@@ -33,7 +33,7 @@ const TopTracks: React.FC = () => {
 		<div className="tracks">
 			<main className="tracks__main">
 				{isError && error instanceof Error && <div className="tracks__error">{error.message}</div>}
-				{data && !isLoading && !isRefetching && (
+				{data && !isLoading && !isRefetching && !isError && (
 					<table className="tracks__table">
 						<thead className="tracks__table__head">
 							<tr className="tracks__table__head_tr">
