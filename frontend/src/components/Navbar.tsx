@@ -98,6 +98,18 @@ const Navbar: React.FC = () => {
 							</>
 						) : (
 							<>
+								<li className="navbar__list__item">
+									<Tippy
+										content={`Switch mode (current mode is ${currentMode})`}
+										theme={currentMode}
+										arrow={false}
+										delay={[300, 200]}
+									>
+										<div className="navbar__icon" onClick={handleTheme}>
+											<Switch />
+										</div>
+									</Tippy>
+								</li>
 								<li>
 									<Tippy content="Log In" theme={currentMode} arrow={false} delay={[300, 200]}>
 										<a href={authURL} className="navbar__icon">

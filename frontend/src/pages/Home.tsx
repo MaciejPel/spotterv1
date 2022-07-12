@@ -20,7 +20,11 @@ const Home: React.FC = () => {
 	});
 
 	const { data: imageData } = usePalette(
-		data ? (data.currently_playing_type !== 'ad' ? data.item.album.images[0].url : '') : ''
+		data?.item?.album?.images
+			? data.currently_playing_type !== 'ad'
+				? data.item.album.images[0].url
+				: ''
+			: ''
 	);
 
 	useEffect(() => {
