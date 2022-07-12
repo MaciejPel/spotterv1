@@ -39,7 +39,6 @@ const sizeOptions = {
 
 const legendOptions = {
 	title: 'Legend',
-	description: 'Number of returned records',
 	values: ['Yes', 'No'],
 	actualValues: [true, false],
 	valuesDescription: ['Yes', 'No'],
@@ -127,33 +126,19 @@ const AsideQueries: React.FC<AsideProps> = ({ type, size, setSize, legend, setLe
 						</div>
 					</div>
 					<div className="sidebar__section">
-						<Tippy
-							content={legendOptions.description}
-							theme={currentMode}
-							arrow={false}
-							placement={'bottom'}
-						>
-							<div className="sidebar__section__title">{legendOptions.title}</div>
-						</Tippy>
+						<div className="sidebar__section__title">{legendOptions.title}</div>
 						<div className="sidebar__section__options">
 							{legendOptions.values.map((value, index: number) => (
-								<Tippy
-									content={legendOptions.valuesDescription[index]}
-									theme={currentMode}
-									arrow={false}
-									key={index}
+								<button
+									onClick={() => {
+										setLegend && setLegend(legendOptions.actualValues[index]);
+									}}
+									className={`sidebar__button ${
+										legend === legendOptions.actualValues[index] ? 'active' : ''
+									}`}
 								>
-									<button
-										onClick={() => {
-											setLegend && setLegend(legendOptions.actualValues[index]);
-										}}
-										className={`sidebar__button ${
-											legend === legendOptions.actualValues[index] ? 'active' : ''
-										}`}
-									>
-										{value}
-									</button>
-								</Tippy>
+									{value}
+								</button>
 							))}
 						</div>
 					</div>
