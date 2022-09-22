@@ -14,6 +14,7 @@
 		@include themed() {
 			color: t($text);
 		}
+
 		font-size: 1.5rem;
 	}
 
@@ -48,10 +49,13 @@
 			color: t($text);
 		}
 	}
+
 	&__title {
 		font-size: 1.2rem;
 		font-weight: 700;
+		margin-bottom: 5px;
 	}
+
 	&__artists__link {
 		font-weight: 300;
 	}
@@ -59,12 +63,14 @@
 
 @media only screen and (max-width: 768px) {
 	.home {
-		padding: 0 15px;
-		padding-bottom: calc(100vh / 6);
+		padding: 0 30px;
+		padding-bottom: calc(100vh / 8);
 	}
 }
 
 @media only screen and (min-width: 769px) {
+
+
 	.home {
 		padding: 0;
 

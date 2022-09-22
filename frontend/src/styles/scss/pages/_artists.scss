@@ -1,8 +1,10 @@
 .artists {
 	@extend .container;
+
 	@include themed() {
 		color: t($text);
 	}
+
 	display: flex;
 	justify-content: center;
 	min-height: calc(100vh);
@@ -21,12 +23,14 @@
 		border: 1px solid $spotify-dark;
 		border-radius: 6px;
 	}
+
 	&__box {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 3px;
 	}
+
 	&__image {
 		object-fit: cover;
 		border-radius: 6px;
@@ -34,6 +38,7 @@
 		height: 200px;
 		width: 200px;
 	}
+
 	&__name {
 		text-align: center;
 	}
@@ -45,6 +50,11 @@
 		align-items: center;
 		width: 100%;
 	}
+
+	&__box:hover &__name {
+		text-decoration: underline;
+	}
+
 }
 
 @media only screen and (min-width: 0px) {
@@ -65,6 +75,7 @@
 			grid-row-gap: 15px;
 			grid-column-gap: 5px;
 		}
+
 		&__image {
 			object-fit: cover;
 			border-radius: 6px;
@@ -72,20 +83,24 @@
 			height: 150px;
 			width: 150px;
 		}
+
 		&__missing {
 			height: 150px;
 		}
 	}
 }
+
 @media only screen and (min-width: 576px) {
 	.artists {
 		&__image {
 			height: 220px;
 			width: 220px;
 		}
+
 		&__missing {
 			height: 220px;
 		}
+
 		&__error {
 			min-height: calc(100vh - 45px - (2 * 84px));
 		}
@@ -103,6 +118,7 @@
 		&__grid {
 			grid-template-columns: repeat(4, 1fr);
 		}
+
 		&__error {
 			min-height: calc(100vh - 45px - 84px);
 		}
@@ -122,6 +138,7 @@
 		&__main {
 			width: 85%;
 		}
+
 		&__error {
 			min-height: calc(100vh - 45px);
 		}

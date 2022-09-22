@@ -69,12 +69,17 @@ const Home: React.FC = () => {
 						/>
 					</div>
 					<div className="home__title">
-						<a href={data.item.uri}>{data.item.name}</a>
+						<a
+							className="link"
+							href={data.item.uri}
+						>
+							{data.item.name}
+						</a>
 					</div>
 					<div className="home__artists">
 						{data.item.artists.map((artist: currentArtistsProps, index: number) => (
 							<a
-								className="home__artists__link"
+								className="home__artists__link link"
 								key={artist.id}
 								href={artist.uri}
 								target="_blank"
