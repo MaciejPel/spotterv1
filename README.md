@@ -12,7 +12,8 @@ Spotter is a site built with React that allows you to view statistics related to
 - profile
 - filters for queries
 
-![SpotterV1 Features](https://i.imgur.com/tDkGli5.png)
+![Spotter features](https://user-images.githubusercontent.com/67285453/234614392-6a89d2f0-9778-4a48-81e5-ceeaf46e0391.png)
+
 
 ## Scripts
 
