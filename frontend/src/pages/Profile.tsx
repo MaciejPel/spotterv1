@@ -32,7 +32,7 @@ const Profile: React.FC = () => {
               alt="Profile"
             />
           ) : (
-            <BiUser className="profile__image" style={{ width: "16rem" }} />
+            <BiUser className="profile__image__alt" style={{ width: "16rem" }} />
           )}
         </div>
         <div className="profile__info">
