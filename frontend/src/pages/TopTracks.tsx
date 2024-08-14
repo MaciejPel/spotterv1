@@ -47,49 +47,47 @@ const TopTracks: React.FC = () => {
 							{data &&
 								data.items.map(
 									(track: TrackProps, index: number) =>
-										track.album.images[2].url && (
-											<tr
-												key={track.id}
-												className="tracks__table__body__tr"
-											>
-												<td className="tracks__table__body__td tracks__table__body__td__first">
-													{index + 1}
-												</td>
-												<td className="tracks__table__body__td tracks__table__body__td__second">
+										<tr
+											key={track.id}
+											className="tracks__table__body__tr"
+										>
+											<td className="tracks__table__body__td tracks__table__body__td__first">
+												{index + 1}
+											</td>
+											<td className="tracks__table__body__td tracks__table__body__td__second">
+												<a
+													href={track.uri}
+													className="tracks__table__body__link"
+												>
+													<img
+														src={track.album.images.length ? track.album.images[2].url : "#"}
+														alt=""
+														className="tracks__table__body__image"
+													/>
+												</a>
+											</td>
+											<td className="tracks__table__body__td tracks__table__body__td__third">
+												<a
+													className="link"
+													href={track.uri}
+												>
+													{track.name}
+												</a>
+											</td>
+											<td className="tracks__table__body__td tracks__table__body__td__fourth">
+												{track.artists.map((artist, index) => (
 													<a
-														href={track.uri}
-														className="tracks__table__body__link"
-													>
-														<img
-															src={track.album.images[2].url}
-															alt=""
-															className="tracks__table__body__image"
-														/>
-													</a>
-												</td>
-												<td className="tracks__table__body__td tracks__table__body__td__third">
-													<a
+														key={artist.id}
+														href={artist.uri}
+														target="_blank"
+														rel="noreferrer"
 														className="link"
-														href={track.uri}
 													>
-														{track.name}
+														{(index ? ', ' : '') + artist.name}
 													</a>
-												</td>
-												<td className="tracks__table__body__td tracks__table__body__td__fourth">
-													{track.artists.map((artist, index) => (
-														<a
-															key={artist.id}
-															href={artist.uri}
-															target="_blank"
-															rel="noreferrer"
-															className="link"
-														>
-															{(index ? ', ' : '') + artist.name}
-														</a>
-													))}
-												</td>
-											</tr>
-										)
+												))}
+											</td>
+										</tr>
 								)}
 						</tbody>
 					</table>
