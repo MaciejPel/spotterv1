@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { usePalette } from 'react-palette';
@@ -9,6 +9,7 @@ import useTheme from '../hooks/useTheme';
 
 const Home: React.FC = () => {
 	document.title = 'Home | Spotter';
+	const container = useRef<HTMLInputElement>(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const { accessToken } = useAuth();
 	const { isDark } = useTheme();
@@ -27,6 +28,59 @@ const Home: React.FC = () => {
 			: ''
 	);
 
+	function getRGB(color: string) {
+		const r = parseInt(color.slice(1, 3), 16);
+		const g = parseInt(color.slice(3, 5), 16);
+		const b = parseInt(color.slice(5, 7), 16);
+		return [r, g, b];
+	}
+
+	async function setGradientBackground() {
+		if (!container.current || !Object.keys(imageData).length) return;
+
+		const currentGrad = container.current.style.getPropertyValue('background');
+		const regex = /[\d,]+/g;
+		const matches =
+			currentGrad
+				.match(regex)
+				?.map((v) => v.replace(',', ''))
+				.filter((v) => v !== '')
+				.map((v) => parseInt(v)) || Array(6).fill(isDark ? 34 : 250);
+
+		const hexFallback = isDark ? '#ffffff' : '000000';
+		const current = { a: matches.slice(0, 3), b: matches.slice(3, 6) };
+		const future = {
+			a: getRGB(isDark ? imageData.darkMuted || hexFallback : imageData.vibrant || hexFallback),
+			b: getRGB(isDark ? imageData.darkVibrant || hexFallback : imageData.muted || hexFallback),
+		};
+
+		while (true) {
+			await new Promise((resolve) => setTimeout(resolve, 15));
+
+			for (const k of ['a', 'b']) {
+				let key = k as 'a' | 'b';
+				for (let i = 0; i < 3; i++) {
+					if (current[key][i] < future[key][i]) current[key][i]++;
+					else if (current[key][i] > future[key][i]) current[key][i]--;
+				}
+			}
+
+			container.current.style.background = `linear-gradient(rgb(${current.a.join(
+				','
+			)}), rgb(${current.b.join(',')}))`;
+
+			if (
+				(['a', 'b'] as const).every((key) => current[key].every((v, i) => v === future[key][i]))
+			) {
+				break;
+			}
+		}
+	}
+
+	useEffect(() => {
+		setGradientBackground();
+	}, [imageData, isDark]);
+
 	useEffect(() => {
 		if (searchParams.has('code') && accessToken) {
 			searchParams.delete('code');
@@ -36,14 +90,10 @@ const Home: React.FC = () => {
 
 	return (
 		<div
+			ref={container}
 			className={`home ${data ? (data.is_playing ? 'playing' : 'paused') : ''} ${
 				data ? (data.currently_playing_type === 'ad' ? ' home__playing__ad' : '') : ''
 			}`}
-			style={{
-				background: `linear-gradient(0deg, ${
-					isDark ? imageData.darkMuted : imageData.vibrant
-				} 0%, ${isDark ? imageData.darkVibrant : imageData.muted} 100%)`,
-			}}
 		>
 			{accessToken !== '401' && !data && !isLoading && (
 				<div className="home__empty">
